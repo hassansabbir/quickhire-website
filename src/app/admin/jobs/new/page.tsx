@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
 import { Button } from "@/components/common/Button";
+import toast from "react-hot-toast";
 
 export default function AddJobPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     company: "",
@@ -29,7 +29,6 @@ export default function AddJobPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
 
     try {
       const response = await fetch("http://localhost:5000/api/jobs", {
@@ -43,15 +42,15 @@ export default function AddJobPage() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        alert("Job posted successfully!");
+        toast.success("Job posted successfully!");
         router.push("/admin");
       } else {
-        setError(
+        toast.error(
           data.message || "Failed to post job. Please check your inputs.",
         );
       }
     } catch (err) {
-      setError("An unexpected error occurred. Is the backend running?");
+      toast.error("An unexpected error occurred. Is the backend running?");
     } finally {
       setLoading(false);
     }
@@ -74,12 +73,6 @@ export default function AddJobPage() {
       </div>
 
       <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 md:p-8">
-        {error && (
-          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6">
-            {error}
-          </div>
-        )}
-
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>

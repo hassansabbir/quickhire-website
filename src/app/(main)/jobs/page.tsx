@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Search, MapPin } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
+import { useRouter } from "next/navigation";
 
 interface Job {
   id: string;
@@ -21,10 +22,11 @@ export default function JobListingsPage({
   searchParams: Promise<{ query?: string; location?: string }>;
 }) {
   const unwrappedParams = use(searchParams);
+  const router = useRouter();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Filters
+  // Input states (only applied to filter when searching)
   const [searchQuery, setSearchQuery] = useState(unwrappedParams.query || "");
   const [locationQuery, setLocationQuery] = useState(
     unwrappedParams.location || "",
@@ -34,8 +36,6 @@ export default function JobListingsPage({
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      // For simplicity, we fetch all and filter client-side,
-      // though typically this would be passed as query params to the backend
       const res = await fetch("http://localhost:5000/api/jobs");
       const data = await res.json();
       if (data.success) {
@@ -49,18 +49,35 @@ export default function JobListingsPage({
   };
 
   useEffect(() => {
-    // Await params isn't strictly necessary for client components unless accessing layout params
     fetchJobs();
   }, []);
 
-  // Compute filtered jobs
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (searchQuery) params.set("query", searchQuery);
+    if (locationQuery) params.set("location", locationQuery);
+    router.push(`/jobs?${params.toString()}`);
+  };
+
+  const handleClearFilters = () => {
+    setSearchQuery("");
+    setLocationQuery("");
+    setSelectedCategory("");
+    router.push("/jobs");
+  };
+
+  // Compute filtered jobs from active URL params and selected category
   const filteredJobs = jobs.filter((job) => {
+    const activeQuery = unwrappedParams.query || "";
+    const activeLocation = unwrappedParams.location || "";
+
     const matchesQuery =
-      job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.company.toLowerCase().includes(searchQuery.toLowerCase());
+      job.title.toLowerCase().includes(activeQuery.toLowerCase()) ||
+      job.company.toLowerCase().includes(activeQuery.toLowerCase());
     const matchesLocation = job.location
       .toLowerCase()
-      .includes(locationQuery.toLowerCase());
+      .includes(activeLocation.toLowerCase());
     const matchesCategory = selectedCategory
       ? job.category.toLowerCase() === selectedCategory.toLowerCase()
       : true;
@@ -88,7 +105,10 @@ export default function JobListingsPage({
           <h1 className="text-4xl font-bold text-white mb-6">
             Find Your Dream Job
           </h1>
-          <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-4 bg-white p-2 rounded-xl shadow-lg">
+          <form
+            onSubmit={handleSearch}
+            className="max-w-4xl mx-auto flex flex-col md:flex-row gap-4 bg-white p-2 rounded-xl shadow-lg"
+          >
             <div className="flex-1 flex items-center px-4 bg-white rounded-lg">
               <Search className="w-5 h-5 text-gray-400 shrink-0" />
               <input
@@ -111,12 +131,13 @@ export default function JobListingsPage({
               />
             </div>
             <Button
+              type="submit"
               variant="primary"
               className="h-12 md:w-auto px-8 w-full justify-center"
             >
               Search
             </Button>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -187,14 +208,7 @@ export default function JobListingsPage({
               <p className="text-gray-500 mb-6">
                 Try adjusting your search query or removing some filters.
               </p>
-              <Button
-                onClick={() => {
-                  setSearchQuery("");
-                  setLocationQuery("");
-                  setSelectedCategory("");
-                }}
-                variant="outline"
-              >
+              <Button onClick={handleClearFilters} variant="outline">
                 Clear Filters
               </Button>
             </div>

@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LayoutDashboard, LogOut, Briefcase } from "lucide-react";
 
 export default function AdminLayout({
@@ -7,6 +10,10 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isApplications = pathname.startsWith("/admin/applications");
+  const isJobs = pathname === "/admin" || pathname.startsWith("/admin/jobs");
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* Sidebar */}
@@ -24,14 +31,22 @@ export default function AdminLayout({
         <nav className="flex-1 p-4 space-y-2">
           <Link
             href="/admin"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#3B41E3] text-white font-medium"
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+              isJobs
+                ? "bg-[#3B41E3] text-white"
+                : "text-gray-400 hover:text-white hover:bg-gray-800"
+            }`}
           >
             <Briefcase className="w-5 h-5" />
             Job Listings
           </Link>
           <Link
             href="/admin/applications"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-medium"
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+              isApplications
+                ? "bg-[#3B41E3] text-white"
+                : "text-gray-400 hover:text-white hover:bg-gray-800"
+            }`}
           >
             <LayoutDashboard className="w-5 h-5" />
             Applications

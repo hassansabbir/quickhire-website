@@ -34,7 +34,7 @@ export function HeroSection() {
       </div>
 
       <div className="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="max-w-xl">
+        <div className="max-w-2xl">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#111827] mb-6 leading-[1.1]">
             Discover <br />
             more than <br />
@@ -62,23 +62,23 @@ export function HeroSection() {
             className="bg-white p-2 rounded-xl shadow-lg border border-gray-100 flex flex-col md:flex-row items-center gap-2"
           >
             <div className="flex-1 w-full relative flex items-center border-b md:border-b-0 md:border-r border-gray-200">
-              <Search className="w-5 h-5 text-gray-400 mx-4" />
+              <Search className="w-5 h-5 text-gray-400 pl-4 pr-3 box-content" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Job title or keyword"
-                className="w-full h-12 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent px-2"
+                className="w-full h-12 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent pr-4 min-w-[170px]"
               />
             </div>
             <div className="flex-1 w-full relative flex items-center">
-              <MapPin className="w-5 h-5 text-gray-400 mx-4" />
+              <MapPin className="w-5 h-5 text-gray-400 pl-4 pr-3 box-content" />
               <input
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Florence, Italy"
-                className="w-full h-12 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent px-2"
+                className="w-full h-12 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent pr-4"
               />
             </div>
             <Button

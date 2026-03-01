@@ -2,11 +2,10 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/common/Button";
+import toast from "react-hot-toast";
 
 export default function ApplyForm({ jobId }: { jobId: string }) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,7 +22,6 @@ export default function ApplyForm({ jobId }: { jobId: string }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
 
     try {
       const response = await fetch("http://localhost:5000/api/applications", {
@@ -35,39 +33,22 @@ export default function ApplyForm({ jobId }: { jobId: string }) {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        setSuccess(true);
+        toast.success(
+          "Application Sent! The company will review your application soon.",
+        );
+        setFormData({ name: "", email: "", resume_link: "", cover_note: "" });
       } else {
-        setError(data.message || "Failed to submit application.");
+        toast.error(data.message || "Failed to submit application.");
       }
     } catch (err) {
-      setError("An error occurred during submission.");
+      toast.error("An error occurred during submission.");
     } finally {
       setLoading(false);
     }
   };
 
-  if (success) {
-    return (
-      <div className="bg-green-50 text-green-700 p-6 rounded-xl border border-green-200 text-center">
-        <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
-          ✓
-        </div>
-        <h4 className="font-bold text-lg mb-2">Application Sent!</h4>
-        <p className="text-sm">
-          Thank you for applying. The company will review your application soon.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {error && (
-        <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg">
-          {error}
-        </div>
-      )}
-
       <div>
         <label
           htmlFor="name"
