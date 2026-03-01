@@ -1,0 +1,259 @@
+
+> quickhire-website@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.9
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./src/app/page.tsx
+Error:   [31mx[0m Expected ';', '}' or <eof>
+     ,-[[36;1;4mD:\Sabbir\projects\My P\ProjectQuickhire\quickhire-website\src\app\page.tsx[0m:1:1]
+ [2m  1[0m | [35;1m,[0m[35;1m-[0m[35;1m>[0m ```
+ [2m  2[0m | [35;1m|[0m   import React from "react";
+ [2m  3[0m | [35;1m|[0m   import { Button } from '@/components/common/Button';
+ [2m  4[0m | [35;1m|[0m   import { Badge } from '@/components/common/Badge';
+ [2m  5[0m | [35;1m|[0m   import { JobCard } from '@/features/jobs/components/JobCard';
+ [2m  6[0m | [35;1m|[0m   import { CategoryCard } from "@/features/jobs/components/CategoryCard";
+ [2m  7[0m | [35;1m|[0m   import {
+ [2m  8[0m | [35;1m|[0m     Search,
+ [2m  9[0m | [35;1m|[0m     MapPin,
+ [2m 10[0m | [35;1m|[0m     PenTool,
+ [2m 11[0m | [35;1m|[0m     TrendingUp,
+ [2m 12[0m | [35;1m|[0m     Megaphone,
+ [2m 13[0m | [35;1m|[0m     DollarSign,
+ [2m 14[0m | [35;1m|[0m     MonitorSmartphone,
+ [2m 15[0m | [35;1m|[0m     Code,
+ [2m 16[0m | [35;1m|[0m     Briefcase,
+ [2m 17[0m | [35;1m|[0m     Users,
+ [2m 18[0m | [35;1m|[0m     LayoutDashboard,
+ [2m 19[0m | [35;1m|[0m     Hexagon,
+ [2m 20[0m | [35;1m|[0m     Anchor,
+ [2m 21[0m | [35;1m|[0m     PenBox,
+ [2m 22[0m | [35;1m|[0m     Share2,
+ [2m 23[0m | [35;1m|[0m     Layers,
+ [2m 24[0m | [35;1m|[0m     Cpu,
+ [2m 25[0m | [35;1m|[0m     CodeSquare,
+ [2m 26[0m | [35;1m|[0m   } from "lucide-react";
+ [2m 27[0m | [35;1m|[0m   import Link from "next/link";
+ [2m 28[0m | [35;1m|[0m   
+ [2m 29[0m | [35;1m|[0m   export default function Home() {
+ [2m 30[0m | [35;1m|[0m     return (
+ [2m 31[0m | [35;1m|[0m       <div className="w-full">
+ [2m 32[0m | [35;1m|[0m         {/* 1. Hero Section */}
+ [2m 33[0m | [35;1m|[0m         <section className="relative bg-gray-50/50 py-24 md:py-32 overflow-hidden w-full">
+ [2m 34[0m | [35;1m|[0m           {/* Decorative Grid/Lines behind hero (simplified) */}
+ [2m 35[0m | [35;1m|[0m           <div className="absolute inset-0 z-0 pointer-events-none opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+ [2m 36[0m | [35;1m|[0m   
+ [2m 37[0m | [35;1m|[0m           <div className="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+ [2m 38[0m | [35;1m|[0m             <div className="max-w-xl">
+ [2m 39[0m | [35;1m|[0m               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]">
+ [2m 40[0m | [35;1m|[0m                 Discover <br />
+ [2m 41[0m | [35;1m|[0m                 more than <br />
+ [2m 42[0m | [35;1m|[0m                 <span className="text-[#3B41E3] relative inline-block">
+ [2m 43[0m | [35;1m|[0m                   5000+ Jobs
+ [2m 44[0m | [35;1m|[0m                   {/* Underline svg decoration (simulated with border for now) */}
+ [2m 45[0m | [35;1m|[0m                   <svg
+ [2m 46[0m | [35;1m|[0m                     className="absolute w-full h-4 -bottom-2 left-0 text-blue-400"
+ [2m 47[0m | [35;1m|[0m                     preserveAspectRatio="none"
+ [2m 48[0m | [35;1m|[0m                     viewBox="0 0 100 10"
+ [2m 49[0m | [35;1m|[0m                     fill="currentColor"
+ [2m 50[0m | [35;1m|[0m                   >
+ [2m 51[0m | [35;1m|[0m                     <path d="M0,5 Q50,0 100,5 Q50,10 0,5 Z" />
+ [2m 52[0m | [35;1m|[0m                   </svg>
+ [2m 53[0m | [35;1m|[0m                 </span>
+ [2m 54[0m | [35;1m|[0m               </h1>
+ [2m 55[0m | [35;1m|[0m               <p className="text-lg text-gray-600 mb-10 max-w-md">
+ [2m 56[0m | [35;1m|[0m                 Great platform for the job seeker that searching for new career
+ [2m 57[0m | [35;1m|[0m                 heights and passionate about startups.
+ [2m 58[0m | [35;1m|[0m               </p>
+ [2m 59[0m | [35;1m|[0m   
+ [2m 60[0m | [35;1m|[0m               {/* Search Bar Container */}
+ [2m 61[0m | [35;1m|[0m               <div className="bg-white p-2 rounded-xl shadow-lg border border-gray-100 flex flex-col md:flex-row items-center gap-2">
+ [2m 62[0m | [35;1m|[0m                 <div className="flex-1 w-full relative flex items-center border-b md:border-b-0 md:border-r border-gray-200">
+ [2m 63[0m | [35;1m|[0m                   <Search className="w-5 h-5 text-gray-400 mx-4" />
+ [2m 64[0m | [35;1m|[0m                   <input
+ [2m 65[0m | [35;1m|[0m                     type="text"
+ [2m 66[0m | [35;1m|[0m                     placeholder="Job title or keyword"
+ [2m 67[0m | [35;1m|[0m                     className="w-full h-12 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent px-2"
+ [2m 68[0m | [35;1m|[0m                   />
+ [2m 69[0m | [35;1m|[0m                 </div>
+ [2m 70[0m | [35;1m|[0m                 <div className="flex-1 w-full relative flex items-center">
+ [2m 71[0m | [35;1m|[0m                   <MapPin className="w-5 h-5 text-gray-400 mx-4" />
+ [2m 72[0m | [35;1m|[0m                   <input
+ [2m 73[0m | [35;1m|[0m                     type="text"
+ [2m 74[0m | [35;1m|[0m                     placeholder="Florence, Italy"
+ [2m 75[0m | [35;1m|[0m                     className="w-full h-12 outline-none text-gray-900 placeholder:text-gray-400 bg-transparent px-2"
+ [2m 76[0m | [35;1m|[0m                   />
+ [2m 77[0m | [35;1m|[0m                 </div>
+ [2m 78[0m | [35;1m|[0m                 <Button
+ [2m 79[0m | [35;1m|[0m                   size="lg"
+ [2m 80[0m | [35;1m|[0m                   className="w-full md:w-auto px-8 rounded-lg whitespace-nowrap bg-[#3B41E3] hover:bg-blue-700 h-12"
+ [2m 81[0m | [35;1m|[0m                 >
+ [2m 82[0m | [35;1m|[0m                   Search my job
+ [2m 83[0m | [35;1m|[0m                 </Button>
+ [2m 84[0m | [35;1m|[0m               </div>
+ [2m 85[0m | [35;1m|[0m               <p className="mt-4 text-sm text-gray-500">
+ [2m 86[0m | [35;1m|[0m                 Popular: UI Designer, UX Researcher, Android, Admin
+ [2m 87[0m | [35;1m|[0m               </p>
+ [2m 88[0m | [35;1m|[0m             </div>
+ [2m 89[0m | [35;1m|[0m   
+ [2m 90[0m | [35;1m|[0m             <div className="hidden lg:block relative">
+ [2m 91[0m | [35;1m|[0m               {/* Replace arbitrary img with local hero placeholder, or CSS block */}
+ [2m 92[0m | [35;1m|[0m               <div className="w-[500px] h-[550px] bg-blue-100 rounded-t-full rounded-b-[40px] ml-auto overflow-hidden relative border-8 border-white shadow-xl">
+ [2m 93[0m | [35;1m|[0m                 <div className="absolute bottom-0 w-full h-[80%] bg-blue-200 mask-image-gradient flex items-end justify-center">
+ [2m 94[0m | [35;1m|[0m                   {/* We'll use a placeholder circle in place of a proper cutout image. */}
+ [2m 95[0m | [35;1m|[0m                   <div className="w-64 h-64 bg-slate-300 rounded-full mb-10 opacity-50 flex items-center justify-center font-bold text-gray-500">
+ [2m 96[0m | [35;1m|[0m                     Image Placeholder
+ [2m 97[0m | [35;1m|[0m                   </div>
+ [2m 98[0m | [35;1m|[0m                 </div>
+ [2m 99[0m | [35;1m|[0m               </div>
+ [2m100[0m | [35;1m|[0m             </div>
+ [2m101[0m | [35;1m|[0m           </div>
+ [2m102[0m | [35;1m|[0m         </section>
+ [2m103[0m | [35;1m|[0m   
+ [2m104[0m | [35;1m|[0m         {/* 2. Companies Section */}
+ [2m105[0m | [35;1m|[0m         <section className="border-y border-gray-100 bg-white py-10 w-full">
+ [2m106[0m | [35;1m|[0m           <div className="container-custom">
+ [2m107[0m | [35;1m|[0m             <p className="text-sm text-gray-500 mb-6 font-medium">
+ [2m108[0m | [35;1m|[0m               Companies we helped grow
+ [2m109[0m | [35;1m|[0m             </p>
+ [2m110[0m | [35;1m|[0m             <div className="flex flex-wrap items-center justify-between gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+ [2m111[0m | [35;1m|[0m               {/* Emulated Logos */}
+ [2m112[0m | [35;1m|[0m               <div className="flex items-center gap-2 font-bold text-2xl tracking-tighter">
+ [2m113[0m | [35;1m|[0m                 <span className="text-red-600">v</span>vodafone
+ [2m114[0m | [35;1m|[0m               </div>
+ [2m115[0m | [35;1m|[0m               <div className="flex items-center font-bold text-3xl font-serif text-blue-600">
+ [2m116[0m | [35;1m|[0m                 intel
+ [2m117[0m | [35;1m|[0m               </div>
+ [2m118[0m | [35;1m|[0m               <div className="flex items-center font-bold text-2xl tracking-widest text-[#E82127]">
+ [2m119[0m | [35;1m|[0m                 TESLA
+ [2m120[0m | [35;1m|[0m               </div>
+ [2m121[0m | [35;1m|[0m               <div className="flex items-center font-bold text-3xl text-gray-800">
+ [2m122[0m | [35;1m|[0m                 AMD
+ [2m123[0m | [35;1m|[0m               </div>
+ [2m124[0m | [35;1m|[0m               <div className="flex items-center font-bold text-2xl text-[#1E3A8A]">
+ [2m125[0m | [35;1m|[0m                 Talkit
+ [2m126[0m | [35;1m|[0m               </div>
+ [2m127[0m | [35;1m|[0m             </div>
+ [2m128[0m | [35;1m|[0m           </div>
+ [2m129[0m | [35;1m|[0m         </section>
+ [2m130[0m | [35;1m|[0m   
+ [2m131[0m | [35;1m|[0m         {/* 3. Categories Section */}
+ [2m132[0m | [35;1m|[0m         <section className="py-24 bg-white w-full">
+ [2m133[0m | [35;1m|[0m           <div className="container-custom">
+ [2m134[0m | [35;1m|[0m             <div className="flex items-end justify-between mb-12">
+ [2m135[0m | [35;1m|[0m               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+ [2m136[0m | [35;1m|[0m                 Explore by <span className="text-blue-400">category</span>
+ [2m137[0m | [35;1m|[0m               </h2>
+ [2m138[0m | [35;1m|[0m               <Link
+ [2m139[0m | [35;1m|[0m                 href="#"
+ [2m140[0m | [35;1m|[0m                 className="font-semibold text-[#3B41E3] hover:text-blue-700 hidden md:flex items-center gap-2"
+ [2m141[0m | [35;1m|[0m               >
+ [2m142[0m | [35;1m|[0m                 Show all jobs <span className="text-xl">→</span>
+ [2m143[0m | [35;1m|[0m               </Link>
+ [2m144[0m | [35;1m|[0m             </div>
+ [2m145[0m | [35;1m|[0m   
+ [2m146[0m | [35;1m|[0m             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+ [2m147[0m | [35;1m|[0m               <CategoryCard
+ [2m148[0m | [35;1m|[0m                 title="Design"
+ [2m149[0m | [35;1m|[0m                 jobCount={235}
+ [2m150[0m | [35;1m|[0m                 icon={<PenTool className="w-5 h-5" />}
+ [2m151[0m | [35;1m|[0m               />
+ [2m152[0m | [35;1m|[0m               <CategoryCard
+ [2m153[0m | [35;1m|[0m                 title="Sales"
+ [2m154[0m | [35;1m|[0m                 jobCount={756}
+ [2m155[0m | [35;1m|[0m                 icon={<TrendingUp className="w-5 h-5" />}
+ [2m156[0m | [35;1m|[0m               />
+ [2m157[0m | [35;1m|[0m               <CategoryCard
+ [2m158[0m | [35;1m|[0m                 title="Marketing"
+ [2m159[0m | [35;1m|[0m                 jobCount={140}
+ [2m160[0m | [35;1m|[0m                 icon={<Megaphone className="w-5 h-5" />}
+ [2m161[0m | [35;1m|[0m                 highlighted
+ [2m162[0m | [35;1m|[0m               />
+ [2m163[0m | [35;1m|[0m               <CategoryCard
+ [2m164[0m | [35;1m|[0m                 title="Finance"
+ [2m165[0m | [35;1m|[0m                 jobCount={325}
+ [2m166[0m | [35;1m|[0m                 icon={<DollarSign className="w-5 h-5" />}
+ [2m167[0m | [35;1m|[0m               />
+ [2m168[0m | [35;1m|[0m               <CategoryCard
+ [2m169[0m | [35;1m|[0m                 title="Technology"
+ [2m170[0m | [35;1m|[0m                 jobCount={436}
+ [2m171[0m | [35;1m|[0m                 icon={<MonitorSmartphone className="w-5 h-5" />}
+ [2m172[0m | [35;1m|[0m               />
+ [2m173[0m | [35;1m|[0m               <CategoryCard
+ [2m174[0m | [35;1m|[0m                 title="Engineering"
+ [2m175[0m | [35;1m|[0m                 jobCount={542}
+ [2m176[0m | [35;1m|[0m                 icon={<Code className="w-5 h-5" />}
+ [2m177[0m | [35;1m|[0m               />
+ [2m178[0m | [35;1m|[0m               <CategoryCard
+ [2m179[0m | [35;1m|[0m                 title="Business"
+ [2m180[0m | [35;1m|[0m                 jobCount={211}
+ [2m181[0m | [35;1m|[0m                 icon={<Briefcase className="w-5 h-5" />}
+ [2m182[0m | [35;1m|[0m               />
+ [2m183[0m | [35;1m|[0m               <CategoryCard
+ [2m184[0m | [35;1m|[0m                 title="Human Resource"
+ [2m185[0m | [35;1m|[0m                 jobCount={346}
+ [2m186[0m | [35;1m|[0m                 icon={<Users className="w-5 h-5" />}
+ [2m187[0m | [35;1m|[0m               />
+ [2m188[0m | [35;1m|[0m             </div>
+ [2m189[0m | [35;1m|[0m           </div>
+ [2m190[0m | [35;1m|[0m         </section>
+ [2m191[0m | [35;1m|[0m   
+ [2m192[0m | [35;1m|[0m         {/* 4. CTA Banner */}
+ [2m193[0m | [35;1m|[0m         <section className="py-12 bg-white w-full">
+ [2m194[0m | [35;1m|[0m           <div className="container-custom">
+ [2m195[0m | [35;1m|[0m             <div className="bg-[#3B41E3] rounded-3xl p-12 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 overflow-hidden relative shadow-2xl">
+ [2m196[0m | [35;1m|[0m               {/* Background pattern */}
+ [2m197[0m | [35;1m|[0m               <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 flex">
+ [2m198[0m | [35;1m|[0m                 <div className="w-full h-full border-l-8 border-white border-dashed skew-x-12 transform origin-bottom-right" />
+ [2m199[0m | [35;1m|[0m               </div>
+ [2m200[0m | [35;1m|[0m   
+ [2m201[0m | [35;1m|[0m               <div className="relative z-10 max-w-lg text-white">
+ [2m202[0m | [35;1m|[0m                 <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+ [2m203[0m | [35;1m|[0m                   Start posting
+ [2m204[0m | [35;1m|[0m                   <br />
+ [2m205[0m | [35;1m|[0m                   jobs today
+ [2m206[0m | [35;1m|[0m                 </h2>
+ [2m207[0m | [35;1m|[0m                 <p className="text-blue-100 mb-8 max-w-sm">
+ [2m208[0m | [35;1m|[0m                   Start posting jobs for only $10.
+ [2m209[0m | [35;1m|[0m                 </p>
+ [2m210[0m | [35;1m|[0m                 <Button
+ [2m211[0m | [35;1m|[0m                   size="lg"
+ [2m212[0m | [35;1m|[0m                   className="bg-white text-[#3B41E3] hover:bg-gray-100 w-fit text-lg"
+ [2m213[0m | [35;1m|[0m                 >
+ [2m214[0m | [35;1m|[0m                   Sign Up For Free
+ [2m215[0m | [35;1m|[0m                 </Button>
+ [2m216[0m | [35;1m|[0m               </div>
+ [2m217[0m | [35;1m|[0m   
+ [2m218[0m | [35;1m|[0m               {/* Floating UI Elements Simulation */}
+ [2m219[0m | [35;1m|[0m               <div className="hidden lg:block relative z-10 w-[500px] h-[350px] bg-white rounded-2xl shadow-2xl p-6 transform rotate-2">
+ [2m220[0m | [35;1m|[0m                 <div className="w-full h-12 border-b border-gray-100 flex items-center justify-between mb-4">
+ [2m221[0m | [35;1m|[0m                   <div className="font-semibold text-gray-800">Job Dashboard</div>
+ [2m222[0m | [35;1m|[0m                   <div className="w-8 h-8 bg-blue-100 rounded-full" />
+ [2m223[0m | [35;1m|[0m                 </div>
+ [2m224[0m | [35;1m|[0m                 <div className="flex gap-4">
+ [2m225[0m | [35;1m|[0m                   <div className="flex-1 bg-gray-50 rounded-lg p-4 h-48 border border-gray-100">
+ [2m226[0m | [35;1m|[0m                     <div className="text-xs text-gray-500 mb-2">Total Views</div>
+ [2m227[0m | [35;1m|[0m                     <div className="flex items-end gap-2 h-24">
+ [2m228[0m | [35;1m|[0m                       {[40, 70, 45, 90, 65, 80].map((h, i) => (
+ [2m229[0m | [35;1m|[0m                         <div
+ [2m230[0m | [35;1m|[0m                           key={i}
+ [2m231[0m | [35;1m|[0m                           className="flex-1 bg-[#3B41E3] rounded-t-sm"
+ [2m232[0m | [35;1m|[0m[35;1m-[0m[35;1m>[0m                         style={{ height: `${h}%` }}
+     : [35;1m`[0m[35;1m---[0m[33;1m                                          ^[0m
+     : [35;1m`[0m[35;1m---[0m[35;1m-[0m [35;1mThis is the expression part of an expression statement[0m
+ [2m233[0m |                           />
+ [2m234[0m |                         ))}
+ [2m235[0m |                       </div>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/page.tsx
+
+
+> Build failed because of webpack errors

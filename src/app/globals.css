@@ -1,0 +1,77 @@
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,400,700,500,600,300&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+
+  --color-primary: #3b41e3;
+  --color-primary-hover: #3238c7;
+  --color-primary-light: #eef0ff;
+
+  --color-secondary: #0a1445;
+  --color-footer: #191b21;
+
+  --color-badge-green-bg: #e8f7f0;
+  --color-badge-green-text: #17b26a;
+
+  --color-badge-blue-bg: #eef0ff;
+  --color-badge-blue-text: #3b41e3;
+
+  --color-badge-orange-bg: #fff4ed;
+  --color-badge-orange-text: #f38744;
+
+  --color-badge-red-bg: #fef3f2;
+  --color-badge-red-text: #f04438;
+
+  --color-badge-purple-bg: #f4f3ff;
+  --color-badge-purple-text: #7a5af8;
+
+  --color-border-light: #e5e7eb;
+
+  /* Fonts */
+  --font-sans: var(--font-epilogue), "Epilogue", sans-serif;
+  --font-heading: "Clash Display", sans-serif;
+}
+
+@theme {
+  --font-sans: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading) !important;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+}
+
+/* Utilities */
+.container-custom {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
