@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { Search, MapPin } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
@@ -18,15 +18,16 @@ interface Job {
 export default function JobListingsPage({
   searchParams,
 }: {
-  searchParams: { query?: string; location?: string };
+  searchParams: Promise<{ query?: string; location?: string }>;
 }) {
+  const unwrappedParams = use(searchParams);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Filters
-  const [searchQuery, setSearchQuery] = useState(searchParams.query || "");
+  const [searchQuery, setSearchQuery] = useState(unwrappedParams.query || "");
   const [locationQuery, setLocationQuery] = useState(
-    searchParams.location || "",
+    unwrappedParams.location || "",
   );
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -82,7 +83,7 @@ export default function JobListingsPage({
   return (
     <div className="min-h-screen bg-gray-50 pb-24">
       {/* Search Header */}
-      <div className="bg-[#3B41E3] py-16 px-6 relative overflow-hidden">
+      <div className="bg-[#3B41E3] py-16 mt-20 px-6 relative overflow-hidden">
         <div className="container-custom relative z-10 text-center">
           <h1 className="text-4xl font-bold text-white mb-6">
             Find Your Dream Job

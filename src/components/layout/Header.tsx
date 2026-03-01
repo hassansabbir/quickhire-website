@@ -4,10 +4,13 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logoImg from "@/assets/quickHireLogo.png";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/common/Button";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +25,9 @@ export function Header() {
       className={`w-full fixed top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm py-0"
-          : "bg-transparent border-b border-transparent py-2"
+          : isHomePage
+            ? "bg-transparent border-b border-transparent py-2"
+            : "bg-white border-b border-gray-100 py-2"
       }`}
     >
       <div className="container-custom h-20 flex items-center justify-between">
@@ -35,7 +40,7 @@ export function Header() {
           {/* Nav Links */}
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              href="#"
+              href="/jobs"
               className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
             >
               Find Jobs

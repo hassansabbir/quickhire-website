@@ -26,7 +26,7 @@ async function getJob(id: string) {
 export default async function JobDetailsPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   // Await the entire params object before destructuring its properties
   const tempParams = await params;
@@ -61,10 +61,10 @@ export default async function JobDetailsPage({
   return (
     <div className="min-h-screen bg-gray-50 pb-24">
       {/* Header Banner */}
-      <div className="bg-white border-b border-gray-200 py-12">
+      <div className="bg-white border-b border-gray-200 mt-20 py-12">
         <div className="container-custom max-w-4xl">
           <Link
-            href="/"
+            href="/jobs"
             className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
