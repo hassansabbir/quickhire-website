@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Link2, Trash2, ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink, Calendar } from "lucide-react";
 
 interface Application {
   id: string;

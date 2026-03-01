@@ -1,4 +1,3 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,400,700,500,600,300&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -31,7 +30,6 @@
 
   /* Fonts */
   --font-sans: var(--font-epilogue), "Epilogue", sans-serif;
-  --font-heading: "Clash Display", sans-serif;
 }
 
 @theme {
@@ -44,7 +42,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading) !important;
+  font-family:
+    var(--font-clash-display), "Clash Display", sans-serif !important;
 }
 
 body {

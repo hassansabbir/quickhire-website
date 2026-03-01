@@ -6,12 +6,13 @@ import { CTABannerSection } from "@/components/ui/CTABannerSection";
 import { FeaturedJobsSection } from "@/components/ui/FeaturedJobsSection";
 import { LatestJobsSection } from "@/components/ui/LatestJobsSection";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   let jobs = [];
   try {
     const res = await fetch("http://localhost:5000/api/jobs", {
       cache: "no-store",
-      next: { revalidate: 0 },
     });
     if (res.ok) {
       const data = await res.json();

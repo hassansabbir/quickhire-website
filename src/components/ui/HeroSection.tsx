@@ -7,6 +7,7 @@ import { Search, MapPin } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import heroBgPattern from "@/assets/bannerImageBackgroundPattern.png";
 import heroPerson from "@/assets/bannerForegroundPersonImage.png";
+import headingUnderline from "@/assets/bannerHeadingUnderline.png";
 
 export function HeroSection() {
   const router = useRouter();
@@ -40,15 +41,12 @@ export function HeroSection() {
             more than <br />
             <span className="text-[#2563EB] relative inline-block">
               5000+ Jobs
-              {/* Underline svg decoration matching screenshot */}
-              <svg
-                className="absolute w-[110%] h-6 -bottom-4 -left-2 text-[#00A3FF]"
-                preserveAspectRatio="none"
-                viewBox="0 0 100 10"
-                fill="currentColor"
-              >
-                <path d="M0,5 Q50,0 100,5 Q50,10 0,5 Z" />
-              </svg>
+              <Image
+                src={headingUnderline}
+                alt=""
+                className="absolute w-[110%] -bottom-7 -left-2"
+                aria-hidden="true"
+              />
             </span>
           </h1>
           <p className="text-lg text-gray-600 mb-10 max-w-md">

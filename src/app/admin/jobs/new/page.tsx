@@ -49,8 +49,10 @@ export default function AddJobPage() {
           data.message || "Failed to post job. Please check your inputs.",
         );
       }
-    } catch (err) {
-      toast.error("An unexpected error occurred. Is the backend running?");
+    } catch (err: any) {
+      toast.error(
+        err.message || "An unexpected error occurred. Is the backend running?",
+      );
     } finally {
       setLoading(false);
     }

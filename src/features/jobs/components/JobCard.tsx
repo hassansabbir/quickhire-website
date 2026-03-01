@@ -34,7 +34,7 @@ export function JobCard({
         </span>
       </div>
 
-      <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-[#3B41E3] transition-colors leading-tight">
+      <h3 className="text-xl font-semibold text-gray-900 mb-1 group-hover:text-[#3B41E3] transition-colors leading-tight">
         {title}
       </h3>
       <p className="text-[15px] font-medium text-gray-500 mb-4 tracking-wide">

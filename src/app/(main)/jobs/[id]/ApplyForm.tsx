@@ -40,8 +40,8 @@ export default function ApplyForm({ jobId }: { jobId: string }) {
       } else {
         toast.error(data.message || "Failed to submit application.");
       }
-    } catch (err) {
-      toast.error("An error occurred during submission.");
+    } catch (err: any) {
+      toast.error(err.message || "An error occurred during submission.");
     } finally {
       setLoading(false);
     }

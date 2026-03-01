@@ -27,8 +27,8 @@ export default function AdminJobsPage() {
       } else {
         setError("Failed to fetch jobs");
       }
-    } catch (err) {
-      setError("An error occurred");
+    } catch (err: any) {
+      setError(err.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -50,8 +50,8 @@ export default function AdminJobsPage() {
       } else {
         alert("Failed to delete job");
       }
-    } catch (err) {
-      alert("An error occurred while deleting");
+    } catch (err: any) {
+      alert(err.message || "An error occurred while deleting");
     }
   };
 
