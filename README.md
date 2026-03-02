@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuickHire Website
+
+Frontend for the QuickHire job portal, built with Next.js 15, Tailwind CSS v4, and TypeScript.
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Icons**: Lucide React
+- **Notifications**: react-hot-toast
+- **Validation**: Zod
+- **Utilities**: clsx, tailwind-merge
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── (auth)/             # Auth pages (login, signup)
+│   ├── (main)/             # Public pages
+│   │   ├── page.tsx        # Homepage (hero, categories, featured jobs)
+│   │   └── jobs/
+│   │       ├── page.tsx    # Job listings with search & filters
+│   │       └── [id]/       # Job details + apply form
+│   ├── admin/              # Admin dashboard
+│   │   ├── layout.tsx      # Sidebar layout
+│   │   ├── page.tsx        # Job management (CRUD, stats, filters)
+│   │   ├── applications/   # Application review
+│   │   └── jobs/new/       # Post new job form
+│   ├── layout.tsx          # Root layout (fonts, Toaster)
+│   └── globals.css         # Global styles
+├── components/
+│   ├── common/             # Badge, Button, etc.
+│   ├── layout/             # Header, Footer
+│   └── ui/                 # HeroSection, CategoriesSection, etc.
+├── features/               # Feature-specific components
+├── hooks/                  # Custom React hooks
+├── lib/                    # Utilities
+│   └── api.ts              # Centralized fetch wrapper
+├── services/               # API service layer
+└── types/                  # TypeScript type definitions
+```
+
+## Pages
+
+| Route                 | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| `/`                   | Homepage — hero, companies, categories, jobs          |
+| `/jobs`               | Job listings with search, location & category filters |
+| `/jobs/:id`           | Job details + application form                        |
+| `/login`              | Login page                                            |
+| `/signup`             | Signup page                                           |
+| `/admin`              | Admin dashboard — job management with stats           |
+| `/admin/jobs/new`     | Post a new job form                                   |
+| `/admin/applications` | Review applicant submissions                          |
+
+## Features
+
+- **Centralized API utility** — `src/lib/api.ts` reads the base URL from `.env.local`, no hardcoded URLs
+- **Admin dashboard** — Stat cards, inline search + category filter, skeleton loading, edit modal with smooth transitions, delete with confirmation
+- **Job filtering** — Instant category filter, URL-synced search params, active filter pills with remove buttons
+- **Loading states** — Skeleton table rows (admin) and skeleton job cards (public) instead of plain spinners
+- **Toast notifications** — Success/error feedback via react-hot-toast
+- **Responsive design** — Mobile-first layout with sticky admin sidebar
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18+)
+- QuickHire backend running (default: `http://localhost:5000`)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone and enter the directory
+cd quickhire-website
+
+# Install dependencies
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in the root:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+```
 
-## Learn More
+Change this to your backend URL for staging/production.
 
-To learn more about Next.js, take a look at the following resources:
+### Running
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Development
+npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Production build
+npm run build
+npm start
 
-## Deploy on Vercel
+# Lint
+npm run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app starts at `http://localhost:3000` by default.
