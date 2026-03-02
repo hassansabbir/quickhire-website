@@ -69,7 +69,7 @@ src/
 ### Prerequisites
 
 - Node.js (v18+)
-- QuickHire backend running (default: `http://localhost:5000`)
+- QuickHire backend running (default: `https://quick-hire-backend-two.vercel.app/`)
 
 ### Installation
 
