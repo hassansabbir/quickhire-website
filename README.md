@@ -86,7 +86,7 @@ npm install
 Create a `.env.local` file in the root:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_API_URL=https://quick-hire-backend-two.vercel.app/api
 ```
 
 Change this to your backend URL for staging/production.
