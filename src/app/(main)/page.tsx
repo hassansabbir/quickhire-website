@@ -1,4 +1,5 @@
 import React from "react";
+import { api } from "@/lib/api";
 import { HeroSection } from "@/components/ui/HeroSection";
 import { CompaniesSection } from "@/components/ui/CompaniesSection";
 import { CategoriesSection } from "@/components/ui/CategoriesSection";
@@ -11,7 +12,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   let jobs = [];
   try {
-    const res = await fetch("http://localhost:5000/api/jobs", {
+    const res = await api("/jobs", {
       cache: "no-store",
     });
     if (res.ok) {

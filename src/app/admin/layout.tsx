@@ -17,7 +17,7 @@ export default function AdminLayout({
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-[#191B21] text-white flex flex-col">
+      <aside className="w-full md:w-64 md:sticky md:top-0 md:h-screen md:overflow-y-auto bg-[#191B21] text-white flex flex-col">
         <div className="p-6 border-b border-gray-800">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#3B41E3] rounded-lg flex items-center justify-center">

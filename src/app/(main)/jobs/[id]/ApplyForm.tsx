@@ -1,5 +1,7 @@
 "use client";
 
+import { api } from "@/lib/api";
+
 import React, { useState } from "react";
 import { Button } from "@/components/common/Button";
 import toast from "react-hot-toast";
@@ -24,7 +26,7 @@ export default function ApplyForm({ jobId }: { jobId: string }) {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/applications", {
+      const response = await api("/applications", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, job_id: jobId }),

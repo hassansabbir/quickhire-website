@@ -1,5 +1,7 @@
 "use client";
 
+import { api } from "@/lib/api";
+
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -31,7 +33,7 @@ export default function AddJobPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/jobs", {
+      const response = await api("/jobs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

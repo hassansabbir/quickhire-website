@@ -1,4 +1,5 @@
 import React from "react";
+import { api } from "@/lib/api";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -12,7 +13,7 @@ import ApplyForm from "@/app/(main)/jobs/[id]/ApplyForm";
 
 async function getJob(id: string) {
   try {
-    const res = await fetch(`http://localhost:5000/api/jobs/${id}`, {
+    const res = await api(`/jobs/${id}`, {
       cache: "no-store",
     });
     if (!res.ok) return null;

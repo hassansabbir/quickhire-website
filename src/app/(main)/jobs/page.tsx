@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, use } from "react";
+import { api } from "@/lib/api";
+
+import React, { useState, useEffect, use, useMemo } from "react";
 import Link from "next/link";
-import { Search, MapPin } from "lucide-react";
+import { Search, MapPin, X, Briefcase } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
@@ -16,6 +18,29 @@ interface Job {
   created_at: string;
 }
 
+// ── Skeleton Card ──
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-6 animate-pulse sm:flex items-center justify-between gap-6">
+      <div className="flex items-start gap-4 flex-1 mb-4 sm:mb-0">
+        <div className="w-14 h-14 rounded-xl bg-gray-200 shrink-0"></div>
+        <div className="flex-1 space-y-3">
+          <div className="h-5 bg-gray-200 rounded w-48"></div>
+          <div className="h-4 bg-gray-200 rounded w-36"></div>
+          <div className="flex gap-2">
+            <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+            <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+          </div>
+        </div>
+      </div>
+      <div className="sm:text-right shrink-0 space-y-3">
+        <div className="h-4 bg-gray-200 rounded w-24 ml-auto"></div>
+        <div className="h-9 bg-gray-200 rounded-lg w-28 ml-auto"></div>
+      </div>
+    </div>
+  );
+}
+
 export default function JobListingsPage({
   searchParams,
 }: {
@@ -26,7 +51,7 @@ export default function JobListingsPage({
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Input states (only applied to filter when searching)
+  // Input states
   const [searchQuery, setSearchQuery] = useState(unwrappedParams.query || "");
   const [locationQuery, setLocationQuery] = useState(
     unwrappedParams.location || "",
@@ -36,7 +61,7 @@ export default function JobListingsPage({
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/jobs");
+      const res = await api("/jobs");
       const data = await res.json();
       if (data.success) {
         setJobs(data.data);
@@ -67,23 +92,29 @@ export default function JobListingsPage({
     router.push("/jobs");
   };
 
-  // Compute filtered jobs from active URL params and selected category
-  const filteredJobs = jobs.filter((job) => {
+  // ── Filtering ── instant & synced
+  const filteredJobs = useMemo(() => {
     const activeQuery = unwrappedParams.query || "";
     const activeLocation = unwrappedParams.location || "";
 
-    const matchesQuery =
-      job.title.toLowerCase().includes(activeQuery.toLowerCase()) ||
-      job.company.toLowerCase().includes(activeQuery.toLowerCase());
-    const matchesLocation = job.location
-      .toLowerCase()
-      .includes(activeLocation.toLowerCase());
-    const matchesCategory = selectedCategory
-      ? job.category.toLowerCase() === selectedCategory.toLowerCase()
-      : true;
+    return jobs.filter((job) => {
+      const matchesQuery =
+        !activeQuery ||
+        job.title.toLowerCase().includes(activeQuery.toLowerCase()) ||
+        job.company.toLowerCase().includes(activeQuery.toLowerCase());
+      const matchesLocation =
+        !activeLocation ||
+        job.location.toLowerCase().includes(activeLocation.toLowerCase());
+      const matchesCategory =
+        !selectedCategory ||
+        job.category.toLowerCase() === selectedCategory.toLowerCase();
 
-    return matchesQuery && matchesLocation && matchesCategory;
-  });
+      return matchesQuery && matchesLocation && matchesCategory;
+    });
+  }, [jobs, unwrappedParams.query, unwrappedParams.location, selectedCategory]);
+
+  const hasActiveFilters =
+    !!unwrappedParams.query || !!unwrappedParams.location || !!selectedCategory;
 
   const getLogoColors = (name: string) => {
     const colors = [
@@ -186,21 +217,87 @@ export default function JobListingsPage({
 
         {/* Job Listings */}
         <div className="lg:col-span-3">
-          <div className="mb-6 flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-gray-900">
-              {filteredJobs.length} {filteredJobs.length === 1 ? "Job" : "Jobs"}{" "}
-              Found
-            </h2>
+          {/* ── Result Count + Active Filters ── */}
+          <div className="mb-6 space-y-3">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-900">
+                {loading ? (
+                  <span className="inline-block h-7 w-32 bg-gray-200 rounded animate-pulse" />
+                ) : (
+                  <>
+                    {filteredJobs.length}{" "}
+                    {filteredJobs.length === 1 ? "Job" : "Jobs"} Found
+                  </>
+                )}
+              </h2>
+            </div>
+
+            {/* ── Active filter pills ── */}
+            {hasActiveFilters && !loading && (
+              <div className="flex items-center gap-2 flex-wrap text-sm">
+                {unwrappedParams.query && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-50 text-[#3B41E3] rounded-full font-medium">
+                    <Search className="w-3 h-3" />
+                    &quot;{unwrappedParams.query}&quot;
+                    <button
+                      onClick={() => {
+                        setSearchQuery("");
+                        const params = new URLSearchParams();
+                        if (unwrappedParams.location)
+                          params.set("location", unwrappedParams.location);
+                        router.push(`/jobs?${params.toString()}`);
+                      }}
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
+                {unwrappedParams.location && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-purple-50 text-purple-700 rounded-full font-medium">
+                    <MapPin className="w-3 h-3" />
+                    {unwrappedParams.location}
+                    <button
+                      onClick={() => {
+                        setLocationQuery("");
+                        const params = new URLSearchParams();
+                        if (unwrappedParams.query)
+                          params.set("query", unwrappedParams.query);
+                        router.push(`/jobs?${params.toString()}`);
+                      }}
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
+                {selectedCategory && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-50 text-green-700 rounded-full font-medium capitalize">
+                    {selectedCategory}
+                    <button onClick={() => setSelectedCategory("")}>
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                )}
+                <button
+                  onClick={handleClearFilters}
+                  className="text-gray-400 hover:text-gray-600 underline text-sm"
+                >
+                  Clear all
+                </button>
+              </div>
+            )}
           </div>
 
           {loading ? (
-            <div className="flex justify-center py-20">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3B41E3]"></div>
+            <div className="space-y-4">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
             </div>
           ) : filteredJobs.length === 0 ? (
             <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-6 h-6 text-gray-400" />
+                <Briefcase className="w-7 h-7 text-gray-300" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
                 No jobs match your filters
