@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/common/Button";
 
-import bannerBg from "@/assets/ctabanner/blue background.png";
-import dashboardImg from "@/assets/ctabanner/dashboardImage.png";
+import bannerBg from "@/assets/ctaBanner/blue background.png";
+import dashboardImg from "@/assets/ctaBanner/dashboardImage.png";
 
 export function CTABannerSection() {
   return (

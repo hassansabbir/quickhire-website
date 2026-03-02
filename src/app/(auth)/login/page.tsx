@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/common/Button";
 import { ArrowLeft } from "lucide-react";
 import logoImg from "@/assets/quickHireLogo.png";
-import bannerBg from "@/assets/ctabanner/blue background.png";
+import bannerBg from "@/assets/ctaBanner/blue background.png";
 
 export default function LoginPage() {
   return (
